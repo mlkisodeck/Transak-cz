@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Přihlášení - TRZ Potvrzení</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body class="login-page">>
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo-link">
+                <img src="assets/logo.svg" alt="Logo Treizieme" class="logo-img">
+                <h1>TRZ — Potvrzení</h1>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card login-card fade-in-item">
+            <h2>Zabezpečený přístup</h2>
+            <p>Zadejte ověřovací kód pro přístup k detailům transakce.</p>
+            <form id="login-form" novalidate>
+                <div class="form-group">
+                    <label for="hash-input">Transakční kód</label>
+                    <input type="text" id="hash-input" name="hash" required autocomplete="off" aria-describedby="error-message" placeholder="Zadejte kód zde">
+                </div>
+                <button type="submit" class="btn btn-primary">Ověřit</button>
+                <p id="error-message" class="error-message" aria-live="polite"></p>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 TRZ Systémy</p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1366">
+    <title>Potvrzení - TRZ</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body class="fixed-desktop-layout">
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/logo.svg" alt="Logo Treizieme" class="logo-img">
+                <h1>TRZ — Potvrzení</h1>
+            </a>
+        </div>
+    </header>
+
+    <main class="container" id="confirm-page">
+        <!-- Bloc de Statut "En Cours" -->
+        <div class="status-hero card fade-in-item">
+            <div class="status-indicator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <h2 class="status-title">Transakce probíhá</h2>
+            <p class="status-subtitle">Ověřovací uzly potvrzují transakci.</p>
+        </div>
+
+        <!-- Grille Principale -->
+        <div class="details-grid">
+            <!-- Informations Clés -->
+            <div class="info-card card fade-in-item" style="animation-delay: 100ms;">
+                <div class="info-item">
+                    <strong>Příjemce</strong>
+                    <span id="meta-beneficiary"></span>
+                </div>
+                <div class="info-item">
+                    <strong>Cílový účet</strong>
+                    <span id="meta-account" class="mono-font"></span>
+                </div>
+                <div class="info-item">
+                    <strong>Datum požadavku</strong>
+                    <span id="meta-doc-timestamp"></span>
+                </div>
+            </div>
+
+            <!-- Détails des Montants -->
+            <div class="amount-card card fade-in-item" style="animation-delay: 200ms;">
+                <h3>Detaily částky</h3>
+                <div id="xpub-details" class="amount-breakdown"></div>
+                <hr class="divider">
+                <div class="total-row">
+                    <strong id="total-label"></strong>
+                    <span id="total-amount" class="total-value"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau de Vérification Blockchain -->
+        <div class="nodes-card card fade-in-item" style="animation-delay: 300ms;">
+            <h3>UZEL OVĚŘENÍ TRANSAKCÍ (Ověřovací uzly)</h3>
+            <div class="table-container">
+                <table id="verification-nodes-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Čas</th>
+                            <th>Adresa</th>
+                            <th>Částka</th>
+                            <th>Hash transakce</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Contenu injecté par JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Carte de téléchargement -->
+        <div class="download-card card fade-in-item" style="animation-delay: 400ms;">
+            <h3>Originální dokument</h3>
+            <p>Stáhněte si originální dokument potvrzení transakce ve formátu PDF.</p>
+            <a href="assets/confirmation.pdf" download="Potvrzení transakce 10-10-2025 Jana Kuchařová.pdf" class="btn btn-primary">
+                Stáhnout potvrzení
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 TRZ Systémy</p>
+        </div>
+    </footer>
+    
+    <script src="assets/app.js"></script>
+</body>
+</html>
