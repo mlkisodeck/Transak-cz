@@ -130,31 +130,7 @@ input[type="text"].is-invalid { border-color: var(--c-danger); }
 .login-card h2 { font-size: 2rem; font-weight: 700; color: var(--c-text-primary); margin-bottom: 0.5rem; }
 .login-card p { color: var(--c-text-secondary); margin-bottom: 2rem; }
 .login-page .header .logo-img { height: 150px; margin-bottom: 1rem; }
-.login-page .header h1 {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-}
-
-/* Défense contre les symboles inattendus dans l'en-tête */
-.header .logo-link {
-    text-decoration: none !important;
-    color: inherit !important; /* S'assure qu'il n'y a pas de couleur de lien par défaut */
-}
-.header .logo-link::before,
-.header .logo-link::after,
-.header .logo-link img::before,
-.header .logo-link img::after,
-.header .logo-link h1::before,
-.header .logo-link h1::after {
-    content: none !important;
-    display: none !important; /* S'assure que les pseudo-éléments sont également masqués */
-}
+.login-page .header h1 { display: none; }
 
 
 /* --- Page de Confirmation --- */
