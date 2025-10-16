@@ -187,3 +187,78 @@ input[type="text"].is-invalid { border-color: var(--c-danger); }
     max-width: 300px;
     margin: 0 auto;
 }
+
+/* Transaction Timeout Banner */
+.transaction-timeout-banner {
+    background-color: #4d0000; /* Darker red background */
+    color: #ff4d4d; /* Bright red text */
+    padding: 1rem 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #ff4d4d;
+    margin-bottom: 2rem;
+}
+
+.transaction-timeout-banner p {
+    margin: 0.5rem 0;
+}
+
+.transaction-timeout-banner .closing-time {
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.transaction-timeout-banner .red-dot {
+    color: #ff4d4d; /* Ensure the dot is bright red */
+    font-size: 1.5rem; /* Make the dot larger */
+    line-height: 1;
+}
+
+/* Red dots for status indicator */
+.timeout-indicator .dot:nth-child(1) {
+    background-color: var(--c-accent-teal); /* First dot remains teal */
+}
+
+.timeout-indicator .dot:nth-child(2),
+.timeout-indicator .dot:nth-child(3) {
+    background-color: var(--c-danger); /* Second and third dots are red */
+}
+
+/* Banner Header for Clock */
+.banner-header {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: var(--c-text-primary); /* Changed to off-white for better contrast */
+    font-family: var(--f-mono);
+    width: 100%;
+}
+
+.utc-clock {
+    font-weight: bold;
+}
+
+/* Marquee Effect */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 0.5rem 0;
+}
+
+.marquee-text {
+    display: inline-block;
+    padding-left: 100%; /* Start text off-screen */
+    animation: marquee 15s linear infinite; /* Adjust duration as needed */
+}
+
+@keyframes marquee {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}

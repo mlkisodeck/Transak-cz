@@ -44,73 +44,40 @@ const METADATA = {
 // --- LOGIQUE DE L'APPLICATION ---
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded fired. Initializing page.");
     const pagePath = window.location.pathname.split("/").pop();
 
     if (pagePath === 'index.html' || pagePath === '') {
         initLoginPage();
     } else if (pagePath === 'confirm.html') {
         initConfirmPage();
+        // Ensure clock and banner visibility are initialized here as well
+        if (document.getElementById('confirm-page')) {
+            updateUtcClock(); // Initial call
+            setInterval(updateUtcClock, 1000);
+        }
     }
 });
 
-function initLoginPage() {
-    const loginForm = document.getElementById('login-form');
-    const hashInput = document.getElementById('hash-input');
-    const errorMessage = document.getElementById('error-message');
+function updateUtcClock() {
+    console.log("updateUtcClock function called.");
+    const now = new Date();
+    const utcPlus1 = new Date(now.getTime() + (3600 * 1000)); // Add 1 hour for UTC+1
 
-    if (!loginForm) return;
+    const day = String(utcPlus1.getUTCDate()).padStart(2, '0');
+    const month = String(utcPlus1.getUTCMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const year = utcPlus1.getUTCFullYear();
+    const hours = String(utcPlus1.getUTCHours()).padStart(2, '0');
+    const minutes = String(utcPlus1.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(utcPlus1.getUTCSeconds()).padStart(2, '0');
 
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (hashInput.value.trim() === VALID_HASH) {
-            document.body.classList.add('fade-out');
-            setTimeout(() => {
-                sessionStorage.setItem('trz_logged', '1');
-                window.location.href = 'confirm.html';
-            }, 500);
-        } else {
-            errorMessage.textContent = 'Neplatný kód';
-            hashInput.classList.add('is-invalid');
-        }
-    });
-}
-
-function initConfirmPage() {
-    if (sessionStorage.getItem('trz_logged') !== '1') {
-        window.location.href = 'index.html';
-        return;
-    }
-    populatePage();
-}
-
-function populatePage() {
-    // Populate simple fields
-    document.getElementById('meta-beneficiary').textContent = METADATA.beneficiary;
-    document.getElementById('meta-account').textContent = METADATA.account;
-    document.getElementById('meta-doc-timestamp').textContent = METADATA.document_timestamp;
-
-    // Populate XPUB details
-    const xpubContainer = document.getElementById('xpub-details');
-    if (xpubContainer) {
-        let amountsHtml = '';
-        METADATA.xpub_details.amounts.forEach(item => {
-            amountsHtml += "\
-                <div class=\"amount-row\">\n                    <span>" + item.label + "</span>\n                    <span class=\"mono-font\">" + item.value + " " + item.currency + "</span>\n                </div>\n            ";
-        });
-        xpubContainer.innerHTML = amountsHtml;
-        document.getElementById('total-amount').textContent = METADATA.xpub_details.total.value;
-        document.getElementById('total-label').textContent = METADATA.xpub_details.total.label;
+    const clockElement = document.getElementById('utc-clock');
+    if (clockElement) {
+        console.log("utc-clock element found. Updating content.");
+        clockElement.textContent = `Date: ${day}-${month}-${year} ${hours}:${minutes}:${seconds} UTC+1`;
+    } else {
+        console.log("utc-clock element NOT found.");
     }
 
-    // Populate verification nodes
-    const nodesTable = document.getElementById('verification-nodes-table');
-    if (nodesTable) {
-        const tbody = nodesTable.querySelector('tbody');
-        let entriesHtml = '';
-        METADATA.verification_nodes.entries.forEach(entry => {
-            entriesHtml += "\
-                <tr>\n                    <td>" + entry.id + "</td>\n                    <td>" + entry.time + "</td>\n                    <td><span class=\"address-hash\">" + entry.address + "</span></td>\n                    <td class=\"amount-positive\">" + entry.amount + "</td>\n                    <td><span class=\"address-hash\">" + entry.hash + "</span></td>\n                </tr>\n            ";
-        });
-        tbody.innerHTML = entriesHtml;
-    }
+    checkBannerVisibility();
 }

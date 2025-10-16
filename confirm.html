@@ -17,10 +17,20 @@
         </div>
     </header>
 
+    <div class="transaction-timeout-banner" id="transaction-timeout-banner">
+        <div class="banner-header">
+            <div class="utc-clock" id="utc-clock"></div>
+        </div>
+        <div class="marquee-container">
+            <p class="marquee-text">Čekací doba transakce vypršela. Transakce bude zrušena 17. října v 00:00:50.</p>
+        </div>
+        <p class="closing-time">Čas uzavření: <span class="red-dot">●</span> 17. října v 00:00:50</p>
+    </div>
+
     <main class="container" id="confirm-page">
         <!-- Bloc de Statut "En Cours" -->
         <div class="status-hero card fade-in-item">
-            <div class="status-indicator">
+            <div class="status-indicator timeout-indicator">
                 <div class="dot"></div>
                 <div class="dot"></div>
                 <div class="dot"></div>
