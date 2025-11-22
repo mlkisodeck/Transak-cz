@@ -187,3 +187,12 @@ input[type="text"].is-invalid { border-color: var(--c-danger); }
     max-width: 300px;
     margin: 0 auto;
 }
+
+/* --- Style amélioré du logo --- */
+.logo-img--enhanced {
+    border-radius: 50%; /* Rend l'image parfaitement ronde */
+    border: 2px solid var(--c-card-border); /* Ajoute une bordure subtile */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Ajoute une ombre pour un effet de profondeur */
+    object-fit: cover; /* Assure que l'image remplit le cercle sans être déformée */
+    aspect-ratio: 1 / 1; /* Maintient un rapport hauteur/largeur carré pour un cercle parfait */
+}

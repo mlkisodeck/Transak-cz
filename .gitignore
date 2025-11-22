@@ -1,0 +1,4 @@
+# Fichiers pour dev local à ignorer
+README.md
+serve.py
+venv/

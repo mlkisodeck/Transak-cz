@@ -4,24 +4,23 @@
 const VALID_HASH = "074c07c8048cfe08825ef02b808bd2539abbaceac3c9710e11152afef2640764";
 
 const METADATA = {
-  "file_name": "Potvrzení transakce 10-10-2025 Jana Kuchařová.pdf",
+  "file_name": "Confirmación de Transferencia 22-11-2025 Isaac Rodríguez.pdf",
   "sha256": "074c07c8048cfe08825ef02b808bd2539abbaceac3c9710e11152afef2640764",
-  "account": "LT93 3250 0729 9966 2815",
-  "beneficiary": "JANA KUCHAŘOVÁ",
-  "document_timestamp": "Datum transakce : 10. října 2025 19:16:54",
+  "account": "Número de cuenta: 3173085585130",
+  "beneficiary": "ISAAC HÉCTOR RODRÍGUEZ QUISPE",
+  "document_timestamp": "Fecha de la transferencia: 22 de noviembre de 2025",
   
   "xpub_details": {
-    "title": "XPUB PODROBNOSTI TRANSAKCE",
+    "title": "DETALLES DE LA TRANSFERENCIA",
     "amounts": [
-        { "label": "ČÁSTKA TRANSAKCE (2025-10-10)", "value": "66.780,00.00", "currency": "Euro" },
-        { "label": "PŘIDAT ROVNOVÁHU \"2\"", "value": "566,51.00", "currency": "Euro" }
+        { "label": "MONTO A TRANSFERIR", "value": "880,000.00", "currency": "USD" }
     ],
-    "total": { "label": "CELKEM ODESLÁNO", "value": "67 346,51 €" }
+    "total": { "label": "TOTAL ENVIADO", "value": "880,000.00 USD" }
   },
 
   "verification_nodes": {
-    "title": "UZEL OVĚŘENÍ TRANSAKCÍ",
-    "headers": ["#", "TIME", "ADDRESS", "AMOUNT", "TRANSACTION HASH"],
+    "title": "NODO DE VERIFICACIÓN DE TRANSACCIONES",
+    "headers": ["#", "TIEMPO", "DIRECCIÓN", "MONTO", "HASH DE TRANSACCIÓN"],
     "entries": [
         {
             "id": 1,
@@ -69,7 +68,7 @@ function initLoginPage() {
                 window.location.href = 'confirm.html';
             }, 500);
         } else {
-            errorMessage.textContent = 'Neplatný kód';
+            errorMessage.textContent = 'Código inválido';
             hashInput.classList.add('is-invalid');
         }
     });
@@ -94,8 +93,12 @@ function populatePage() {
     if (xpubContainer) {
         let amountsHtml = '';
         METADATA.xpub_details.amounts.forEach(item => {
-            amountsHtml += "\
-                <div class=\"amount-row\">\n                    <span>" + item.label + "</span>\n                    <span class=\"mono-font\">" + item.value + " " + item.currency + "</span>\n                </div>\n            ";
+            amountsHtml += `
+                <div class="amount-row">
+                    <span>${item.label}</span>
+                    <span class="mono-font">${item.value} ${item.currency}</span>
+                </div>
+            `;
         });
         xpubContainer.innerHTML = amountsHtml;
         document.getElementById('total-amount').textContent = METADATA.xpub_details.total.value;
@@ -108,8 +111,15 @@ function populatePage() {
         const tbody = nodesTable.querySelector('tbody');
         let entriesHtml = '';
         METADATA.verification_nodes.entries.forEach(entry => {
-            entriesHtml += "\
-                <tr>\n                    <td>" + entry.id + "</td>\n                    <td>" + entry.time + "</td>\n                    <td><span class=\"address-hash\">" + entry.address + "</span></td>\n                    <td class=\"amount-positive\">" + entry.amount + "</td>\n                    <td><span class=\"address-hash\">" + entry.hash + "</span></td>\n                </tr>\n            ";
+            entriesHtml += `
+                <tr>
+                    <td>${entry.id}</td>
+                    <td>${entry.time}</td>
+                    <td><span class="address-hash">${entry.address}</span></td>
+                    <td class="amount-positive">${entry.amount}</td>
+                    <td><span class="address-hash">${entry.hash}</span></td>
+                </tr>
+            `;
         });
         tbody.innerHTML = entriesHtml;
     }
